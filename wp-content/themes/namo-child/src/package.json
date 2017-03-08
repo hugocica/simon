@@ -1,0 +1,36 @@
+{
+  "name": "interamerican_simon",
+  "version": "1.0.0",
+  "description": "Simon Shopping Destination",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/.git"
+  },
+  "author": "Hugo Cicarelli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com//issues"
+  },
+  "homepage": "https://github.com/#readme",
+  "devDependencies": {
+    "gulp": "~3.2.4",
+    "gulp-jshint": "~1.3.4",
+    "gulp-uglify": "~0.1.0",
+    "gulp-sass": "~0.2.3",
+    "gulp-imagemin": "~0.1.1",
+    "gulp-concat": "^2.4.1",
+    "gulp-minify-css": "^0.3.10",
+    "gulp-compass": "^1.3.2"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.1.0"
+  },
+  "dependencies": {
+    "gulp": "^3.9.0"
+  }
+}
