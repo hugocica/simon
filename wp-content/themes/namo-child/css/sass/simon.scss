@@ -830,7 +830,7 @@ body {
                 overflow-y: auto;
                 
                 @include desktop-1366 {
-                    overflow: hidden;
+                    // overflow: hidden;
                 }
                 @include tablet-portrait {
                     height: auto;
