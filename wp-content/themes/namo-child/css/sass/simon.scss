@@ -906,7 +906,7 @@ body {
                 }
                 .propriedade-inner-wrapper {
                     padding: 5px 0;
-                    overflow-x: auto;
+                    overflow-x: hidden;
                     overflow-y: hidden;
                     
                     @include desktop-1366 {
