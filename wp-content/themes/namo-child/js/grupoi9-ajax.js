@@ -23,7 +23,7 @@ function LoadPropriedades( $pid ) {
                 $('.propriedades-city-wrapper').append(data.content).addClass('active');
             
                 $('.close-content').click(function() {
-                    $('.propriedades-city-wrapper').removeClass('active').children('.propriedade').hide();
+                    $('.propriedades-city-wrapper').removeClass('active').children('.propriedade-wrapper').hide();
                 });
             }
         }

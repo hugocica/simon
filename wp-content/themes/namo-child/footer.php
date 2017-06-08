@@ -32,7 +32,7 @@
 		<footer id="bottom-widgets">
 			<div id="bottom-widgets-wrap" class="be-wrap be-row clearfix">
 				<?php for($j = 1; $j <= $i; $j++) : 
-				    $col_class = ( $j == 2 ) ? 'two-fourth' : 'one-fourth' ; ?>
+				    $col_class = ( $j == 2 ) ? 'two-fourth col-md-6' : 'one-fourth col-md-3' ; ?>
 					<div class="<?php echo $col_class; ?> column-block clearfix">
 						<?php 
 							if ( is_active_sidebar( 'footer-widget-'.$j ) ) {
@@ -50,8 +50,9 @@
 				<div id="copyright">
 					<?php echo $be_themes_data['copyright_text']; ?>
 				</div>
-				<div id="">
-				    
+				<div id="i9-wrapper">
+					<span>Criação e desenvolvimento</span>
+					<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/grupoi9.png" alt="logo grupoi9">
 				</div>
 			</div>
 		</footer> <?php
@@ -85,8 +86,12 @@
 </script>
 <!-- Option Panel Custom JavaScript -->
 <script>
-	jQuery(document).ready(function(){
+	jQuery(document).ready(function($){
 		<?php echo stripslashes_deep(htmlspecialchars_decode($be_themes_data['custom_js'],ENT_QUOTES));  ?>
+		
+		if ( $(window).width() > 769 ) {
+			$('.full-height').height($(window).outerHeight() - ($('#bottom-widgets').outerHeight() + $('#footer').outerHeight()));
+		} 
 	});
 </script>
 <input type="hidden" id="ajax_url" value="<?php echo admin_url( 'admin-ajax.php' ); ?>" />

@@ -1,11 +1,12 @@
 // Load Royal Slider CSS
 // @import "partials/royalslider";
 
-$phone-width: 320px;
+$phone-width: 319px;
 $tablet-portrait: 768px;
-$tablet-landscape: 1024px;
-$laptop-width: 1200px;
-$desktop-width: 1440px;
+$tablet-landscape: 1025px;
+$laptop-width: 1201px;
+$desktop-1366-width: 1367px;
+$desktop-1440-width: 1441px;
 $fullhd-width: 1920px;
 
 @mixin phone {
@@ -27,27 +28,66 @@ $fullhd-width: 1920px;
 }
 
 @mixin laptop {
-    @media (min-width: #{$tablet-landscape}) and (max-width: #{$laptop-width - 1px}) {
+    @media (max-width: #{$laptop-width - 1px}) {
         @content;
     }
 }
 
-@mixin desktop {
-    @media (min-width: #{$laptop-width}) and (max-width: #{$desktop-width - 1px}) {
+@mixin desktop-1366 {
+    @media (max-width: #{$desktop-1366-width - 1px}) {
         @content;
     }
+}
+
+@mixin desktop-1440 {
+    @media (max-width: #{$desktop-1440-width - 1px}) {
+        @content;
+    }
+}
+
+@font-face {
+	font-family: Simon;
+	font-style: normal;
+	font-weight: 100;
+	src: url('fonts/SimonCircular-Light.otf');
+}
+@font-face {
+	font-family: Simon;
+	font-style: normal;
+	font-weight: 300;
+	src: url('fonts/SimonCircular-Medium.otf');
+}
+@font-face {
+	font-family: Simon;
+	font-style: normal;
+	font-weight: 500;
+	src: url('fonts/SimonCircular-Book.otf');
+}
+@font-face {
+	font-family: Simon;
+	font-style: normal;
+	font-weight: 700;
+	src: url('fonts/SimonCircular-Bold.otf');
+}
+@font-face {
+	font-family: Simon;
+	font-style: normal;
+	font-weight: 900;
+	src: url('fonts/SimonCircular-Black.otf');
 }
 
 h1, h2, h3, h4, h5, h6, p, span {
-    font-family: Simon, Open Sans;
+    font-family: Simon, Open Sans !important;
 }
 
 body {
     .sb-slidebar {
         background-color: #000;
+        z-index: 20;
         
         &.opened {
             width: 550px;
+            
             
             @include phone {
                 width: 100%;
@@ -76,24 +116,82 @@ body {
                     }
                 }
             }
-            @include desktop {
+            @include desktop-1366 {
                 margin-right: 75px;
             }
             @include phone {
-                margin: 55px 40px;
+                margin: 110px 0 0;
                 text-align: left;
+            }
+        }
+        .social-medias {
+            margin: 0 125px 50px 60px;
+            text-align: right;
+            
+            @include desktop-1366 {
+                margin-right: 75px;
+            }
+            @include phone {
+                margin: 20px 15px 0;
+                text-align: left;
+            }
+            span {
+                font-size: 12px;
+                margin-right: 8px;
+            }
+            a {
+                display: inline-block;
+                vertical-align: middle;
+                width: 20px;
+                height: 20px;
+                background-image: url(../images/social-icons.png);
+                background-size: cover;
+                margin-right: 5px;
+                cursor: pointer;
+                
+                &.facebook {
+                    background-position-x: 0;
+                    width: 15px;
+                }
+                &.twitter {
+                    background-position-x: 110px;
+                    width: 25px;
+                }
+                &.youtube {
+                    background-position-x: 66px;
+                    width: 25px;
+                }
+                &.seila {
+                    background-position-x: 0;
+                    width: 15px;
+                    display: none;
+                }
+                &.instagram {
+                    background-position-x: 22px;
+                    width: 22px;
+                }
             }
         }
     }
     .be-wrap {
         max-width: 1674px;
         
-        @include desktop {
+        @include desktop-1440 {
             max-width: 1200px;
+        }
+        @include desktop-1366 {
+            max-width: 1200px;
+        }
+        @include tablet-landscape {
+            max-width: 1000px;
+        }
+        @include tablet-portrait {
+            max-width: 700px;
         }
     }
     #main-wrapper {
         #main {
+            position: relative;
             #header {
                 position: absolute;
                 width: 100%;
@@ -101,10 +199,16 @@ body {
                 top: 0;
                 left: 0;
                 background: transparent;
-                z-index: 15;
+                z-index: 20;
                 
-                @include desktop {
+                @include desktop-1366 {
                     height: 120px;
+                }
+                @include tablet-portrait {
+                    height: 135px;
+                }
+                @include phone {
+                    height: 135px;
                 }
                 #header-inner-wrap {
                     background: inherit;
@@ -124,14 +228,49 @@ body {
                                 font-weight: 700;
                                 color: #fff;
                                 letter-spacing: 1px;
-                                padding: 35px 50px;    
+                                padding: 50px 50px;    
                                 
-                                @include desktop {
+                                @include desktop-1440 {
+                                    font-size: 35px;
+                                }
+                                @include desktop-1366 {
                                     font-size: 36px;
                                 }
+                                @include tablet-landscape {
+                                    font-size: 26px;
+                                    line-height: 28px;
+                                }
+                                @include tablet-portrait {
+                                    font-size: 26px;
+                                    padding: 35px 15px;
+                                    line-height: 28px;
+                                }
+                                @include phone {
+                                    font-size: 26px;
+                                    padding: 35px 15px;
+                                    line-height: 28px;
+                                }
+                            }
+                            @include tablet-portrait {
+                                width: 100%;   
+                                right: auto;
+                                left: 0;
+                            }
+                            @include phone {
+                                width: 100%;   
+                                right: auto;
+                                left: 0;
                             }
                         }
                         .header-controls {
+                            @include tablet-portrait {
+                                position: relative;
+                                right: 15px;
+                            }
+                            @include phone {
+                                position: relative;
+                                right: 15px;
+                            }
                             .menu-controls {
                                 margin-top: 45px;
                                 position: relative;
@@ -156,6 +295,10 @@ body {
                                     }
                                 }
                                 &.opened {
+                                    @include phone {
+                                        position: fixed;
+                                        right: 15px;
+                                    }
                                     span {
                                         &.sandwich-menu {
                                             &:first-of-type {
@@ -178,17 +321,50 @@ body {
                     }
                 }
             }
+            .forcefullwidth_wrapper_tp_banner {
+                height: 100% !important;
+                
+                .rev_slider_wrapper.fullscreen-container {
+                    height: 100% !important;
+                }
+            }
             .full-height {
-                height: 100vh;
+                height: 85vh;
+                
+                @include tablet-landscape {
+                    height: 100vh;
+                }
+                @include tablet-portrait {
+                    height: 100vh;
+                }
+                @include phone {
+                    height: 100vh;
+                }
             }
             .half-section {
                 width: 50%;
                 float: left;
+                
+                @include tablet-portrait {
+                    width: 100%;
+                }
+                @include phone {
+                    width: 100%;
+                }
             }
             .full-section {
                 width: 100%;
             }
             #revslider-container {
+                @include tablet-landscape {
+                    //margin-bottom: -57px;
+                }
+                @include tablet-portrait {
+                    // margin-bottom: -57px;
+                }
+                @include phone {
+                    // margin-bottom: -57px;
+                }
                 .no-slides-text {
                     padding-top: 0;
                     position: relative;
@@ -196,37 +372,114 @@ body {
                 }
             }
             #descontos-wrapper {
+                @include tablet-portrait {
+                    clear: both;
+                    display: inline-block;
+                    margin-top: 13vh;
+                    height: auto;
+                    margin-bottom: -10px;
+                    width: 100%;
+                }
+                @include phone {
+                    clear: both;
+                    display: inline-block;
+                    margin-top: 20vh;
+                    height: auto;
+                    margin-bottom: -10px;
+                }
                 .entry-thumb {
                     position: relative;
-                    z-index: 16;
+                    z-index: 21;
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-position: 50%;
+                    
+                    @include tablet-portrait {
+                        height: 35vh;
+                        z-index: 16;
+                        background-position: 50% 0;
+                    }
+                    @include phone {
+                        height: 35vh;
+                        z-index: 16;
+                        background-position: 50% 0;
+                    }
                 }    
                 .form-descontos-container {
                     background-color: #ebebeb;
                     position: relative;
                     
-                    #form_form-descontos {
+                    @include phone {
+                        height: auto;
+                    }
+                    @include tablet-portrait {
+                        height: 600px;
+                    }
+                    .frm_forms {
+                        height: 100%;
+                    }
+                    #form_form-descontos, #form_form-promocao {
                         position: relative;
-                        top: 200px;
+                        top: 195px;
                         width: 100%;
                         max-width: 845px;
                         text-align: right;
+                        overflow: auto;
+                        top: 195px;
+                        max-height: calc(100% - 210px);
                         
-                        @include desktop {
+                        @include desktop-1440 {
+                            top: 175px;
+                            max-width: 635px;
+                            max-height: calc(100% - 175px);
+                        }
+                        
+                        @include desktop-1366 {
                             top: 130px;
                             max-width: 635px;
+                            max-height: calc(100% - 150px);
+                        }
+                        @include tablet-portrait {
+                            max-width: 512px;
+                            text-align: center;
+                        }
+                        @include tablet-portrait {
+                            top: 45px;
+                            max-width: 635px;
+                            max-height: calc(100% - 50px);
+                            margin: 0 auto;
+                            text-align: center;
+                        }
+                        @include phone {
+                            top: 15px;
+                            text-align: center;
                         }
                         .frm_error_style {
                             display: none;
                         }
-                        .half-input {
+                        .half-input, .full-input {
                             width: 45%;
                             display: inline-block;
                             padding: 0 10px;
                             clear: none;
+                            position: relative;
+                            margin-bottom: 18px;
                             
+                            @include phone {
+                                width: 100%;
+                            }
+                            &.horizontal_radio {
+                                width: 90.5%;
+                                margin-bottom: 0;
+                                
+                                .frm_opt_container {
+                                    text-align: left;
+                                    
+                                    input {
+                                        vertical-align: middle;
+                                    }
+                                }
+                            }
                             .frm_required {
                                 color: #000;
                                 float: left;
@@ -235,15 +488,28 @@ body {
                                 height: 42px;
                                 border-radius: 0;
                                 
-                                @include desktop {
+                                &:focus, &:active {
+                                    outline-color: transparent;
+                                    border-color: transparent;
+                                    box-shadow: none;
+                                }
+                                @include desktop-1366 {
                                     height: 35px;
                                 }
+                            }
+                            textarea {
+                                resize: none;
+                                height: 80px;
+                                border-radius: 0;
+                                margin-bottom: -12px;
+                                padding: 10px 15px;
                             }
                             .frm_primary_label {
                                 text-transform: uppercase;
                                 font-family: Simon, Open Sans;
+                                line-height: 20px;
                                 
-                                @include desktop {
+                                @include desktop-1366 {
                                     font-size: 12px;
                                 }
                             }
@@ -251,9 +517,22 @@ body {
                                 background-image: url(../images/date-icon.png);
                                 background-repeat: no-repeat;
                                 background-position: 10px 50%;
+                                padding-left: 30px;
                             }
                             .frm_error {
-                                margin-bottom: -20px;
+                                position: absolute;
+                            }
+                            &.l-4 {
+                                left: -4px;  
+                            }
+                        }
+                        .full-input {
+                            width: 90.5%;
+                            
+                            &.custom-select {
+                                select, input, .customSelect {
+                                    width: 45% !important;
+                                }
                             }
                         }
                         .frm_submit {
@@ -272,10 +551,121 @@ body {
                     }
                 }
             }
+            #voucher {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, 0.7);
+                width: 100%;
+                height: 100vh;
+                z-index: 50;
+                display: none;
+                
+                @include tablet-landscape {
+                    height: 100%;
+                }
+                @include tablet-portrait {
+                    position: fixed;
+                }
+                @include phone {
+                    position: fixed;
+                }
+                
+                .popup {
+                    background-color: #fff;
+                    text-align: center;
+                    width: 550px;
+                    height: 260px;
+                    position: relative;
+                    left: 50%;
+                    margin-left: -275px;
+                    top: 50%;
+                    margin-top: -130px;
+                    
+                    @include phone {
+                        margin-left: 0;
+                        margin-top: 0;
+                        left: 0;
+                        height: 280px;
+                        top: 25%;
+                        max-width: 100%;
+                    }
+                }
+                
+                .popuptitle {
+                    color: #000;
+                    text-transform: uppercase;
+                    letter-spacing: 0;
+                    font-size: 25px;
+                    font-weight: 900;
+                    padding-top: 35px;
+                    
+                    @include phone {
+                        line-height: 30px;
+                    }
+                }
+                
+                .popuptext {
+                    color: #000;
+                    text-transform: uppercase;
+                    letter-spacing: 0;
+                    font-size: 12px;
+                    font-weight: 200;
+                    line-height: 15px;
+                    
+                    p {
+                        margin-top: 25px;
+                        margin-bottom: 1rem;
+                        padding-left: 34px;
+                        padding-right: 34px;
+                    }
+                }
+                
+                #buttonvoucher {
+                    text-transform: uppercase;
+                    background-color: #000;
+                    font-weight: 900;
+                    border: none;
+                    color: #fff;
+                    padding: 3px 50px;
+                    font-size: 11px;
+                    margin-top: 20px;
+                }
+                
+                #button-close-voucher {
+                    text-transform: uppercase;
+                    background-color: #fff;
+                    font-weight: 900;
+                    border: none;
+                    color: #000;
+                    font-size: 15px;
+                    float: right;
+                }
+                
+            }
             #regulamento-wrapper {
+                @include tablet-portrait {
+                    margin-bottom: 20vh;
+                    height: auto;
+                }
+                @include phone {
+                    margin-bottom: 23vh;
+                    height: auto;
+                }
+                @include tablet-landscape {
+                    margin-bottom: 30vh;
+                    height: auto;
+                }
                 .entry-content {
                     position: relative;
                     top: 23vh;
+                    
+                    @include tablet-portrait {
+                        top: 16vh;
+                    }
+                    @include phone {
+                        padding: 15px;
+                    }
                 }
             }
             #propriedades-slider-wrapper {
@@ -284,26 +674,68 @@ body {
                 #propriedades-featured {
                     .propriedade {
                         cursor: pointer;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: 50%;
                         
+                        @include tablet-portrait {
+                            background-position: 50%;
+                        }
+                        @include phone {
+                            background-position: 50%;
+                        }
                         .propriedade-btn {
                             background-color: #000;
                             display: inline-block;
                             position: relative;
-                            top: 70vh;
+                            top: 59vh;
                             padding: 25px 40px 25px 5%;
-                            
-                            @include desktop {
+
+                            @include desktop-1440 {
+                                top: 53vh;
+                            }                            
+                            @include desktop-1366 {
+                                top: 45vh;
+                            }
+                            @include tablet-portrait {
                                 top: 55vh;
+                            }
+                            @include tablet-landscape {
+                                top: 40vh;
+                            }
+                            @include phone {
+                                top: 35vh;
                             }
                             .propriedade-title {
                                 color: #fff;    
                                 letter-spacing: 1px;
                                 font-weight: 900;
                                 font-size: 60px;
+                                
+                                @include desktop-1366 {
+                                    font-size: 50px;
+                                }
+                                @include tablet-portrait {
+                                    font-size: 40px;
+                                }
+                                @include phone {
+                                    font-size: 34px;
+                                }
                             }
                             span {
                                 font-size: 30px;
                                 color: #b4b2b0;
+                                text-trans: uppercase;
+                                
+                                @include desktop-1366 {
+                                    font-size: 24px;
+                                }
+                                @include tablet-portrait {
+                                    font-size: 20px;
+                                }
+                                @include phone {
+                                    font-size: 20px;
+                                }
                             }
                         }
                     }
@@ -320,6 +752,13 @@ body {
                     opacity: 0;
                     transition: all ease 0.5s;
                     
+                    @include tablet-portrait {
+                        padding: 15px 0;
+                    }
+                    @include phone {
+                        padding: 15px 0;
+                    }
+
                     .carrousel-item {
                         display: inline-block;
                         text-transform: uppercase;
@@ -327,6 +766,11 @@ body {
                         font-size: 16px;
                         color: #fff;
                         cursor: pointer;
+                        
+                        @include tablet-landscape {
+                            font-size: 12px;
+                        }
+                        
                         
                         &:not(:first-of-type) {
                             &:before {
@@ -337,9 +781,26 @@ body {
                                 height: 1px;
                                 vertical-align: middle;
                                 margin: 0 10px;
+                                position: relative;
+                                top: -2px;
                                 
-                                @include desktop {
+                                @include desktop-1440 {
+                                    width: 35px;
+                                }
+                                
+                                @include desktop-1366 {
                                     width: 42px;
+                                }
+                                @include tablet-portrait {
+                                    width: 12px;
+                                    margin: 0;
+                                }
+                                @include tablet-landscape {
+                                    width: 30px;
+                                }
+                                @include phone {
+                                    width: 12px;
+                                    margin: 0;
                                 }
                             }
                         }
@@ -363,65 +824,170 @@ body {
                 background-color: #fff;
                 top: 0;
                 left: 0;
-                z-index: 15;
+                z-index: 20;
                 display: none;
+                height: 85vh;
+                overflow-y: auto;
                 
+                @include desktop-1366 {
+                    overflow: hidden;
+                }
+                @include tablet-portrait {
+                    height: auto;
+                }
+                @include phone {
+                    height: auto;
+                }
                 &.active {
                     display: block;
                 }
                 .close-content {
                     position: absolute;
-                    top: 70px;
-                    right: 65px;
                     cursor: pointer;
-                    color: #fff;
+                    top: 7%;
+                    right: 7%;
                     z-index: 10;
                     
-                    svg {
-                        width: 20px;
-                        height: 20px;
-                        color: inherit;
-                        vertical-align: middle;
+                    @include tablet-portrait {
+                        top: 2%;
+                    }
+                    @include phone {
+                        top: 2%;
                     }
                     span {
-                        color: inherit;
-                        text-transform: uppercase;
-                        display: inline-block;
-                        vertical-align: middle;
+                        &.sandwich-menu {
+                            background-color: #fff;
+                            height: 4px;
+                            width: 30px;
+                            display: block;
+                            margin: 5px 0;
+                            position: relative;
+                            transition: all ease-in 0.3s;
+                            
+                            &:first-of-type {
+                                transform: rotate(45deg);
+                                top: 9px;
+                            }
+                            &:last-of-type {
+                                transform: rotate(-45deg);
+                                top: -9px;
+                            }
+                            &:nth-child(2){
+                                visibility: hidden;
+                                opacity: 0;
+                            }
+                        }
                     }
                 }
                 .propriedade-title {
                     background-color: #000;
                     padding: 60px 0;
                     
+                    @include desktop-1366 {
+                        padding: 35px 0;
+                    }
                     h2 {
                         color: #fff;
                         letter-spacing: 1px;
                         font-weight: 700;
                         font-size: 50px;
                         padding: 0 15px;
+                        
+                        @include desktop-1366 {
+                            font-size: 42px;
+                        }
+                        @include tablet-portrait {
+                            font-size: 30px;
+                        }
+                        @include phone {
+                            font-size: 30px;
+                        }
                     }
                 }
                 .propriedade-inner-wrapper {
-                    padding: 50px 0;
+                    padding: 5px 0;
+                    overflow-x: auto;
+                    overflow-y: hidden;
                     
+                    @include desktop-1366 {
+                        padding: 0;
+                    }
+                    .horizontal-scroll {
+                        // width: 1000000px;
+                        height: 100%;
+                        overflow-x: auto;
+                        
+                        @include tablet-portrait {
+                            width: 100% !important;
+                        }
+                        @include phone {
+                            width: 100% !important;
+                        }
+                    }
+                    .propriedade {
+                        margin-top: 60px;
+                        margin-right: 45px;
+                        width: 410px;
+                        padding-bottom: 120px;
+                        
+                        @include desktop-1440 {
+                            margin-top: 15px;
+                            padding-bottom: 50px;
+                        }
+                        @include desktop-1366 {
+                            width: 230px;
+                            margin-right: 15px;
+                            margin-top: 0;
+                        }
+                        @include tablet-portrait {
+                            width: 100%;
+                        }
+                        @include phone {
+                            width: 100%;
+                            margin-bottom: 40px;
+                            display: inline-block;
+                        }
+                        &:last-of-type {
+                            margin-right: 0;
+                        }
+                    }
                     .entry-meta {
                         height: 50px;
                         position: relative;
                         margin-bottom: 5px;
                         
+                        @include desktop-1440 {
+                            margin-bottom: 0;    
+                        }
                         .entry-title {
                             font-size: 22px;
                             letter-spacing: 1px;
                             line-height: 28px;
                             position: absolute;
                             bottom: 0;
-                            font-weight: 700;
+                            font-weight: 900;
+                            
+                            @include desktop-1366 {
+                                font-size: 16px;
+                                line-height: 20px;
+                            }
                         }
                     }
                     .entry-thumb {
                         height: 235px;
                         
+                        @include desktop-1440 {
+                            height: 225px;
+                        }
+                        @include desktop-1366 {
+                            height: 135px;
+                        }
+                        @include tablet-portrait {
+                            height: 390px;
+                        }
+                        @include phone {
+                            height: 190px;
+                        }
                         img {
                             width: 100%;
                         }
@@ -432,8 +998,18 @@ body {
                             color: #000;
                             line-height: 18px;
                             
+                            @include desktop-1440 {
+                                margin-bottom: 5px;
+                            }
                             &.entry-description {
                                 margin: 15px 0 20px;
+                                
+                                @include desktop-1440 {
+                                    margin: 5px 0 10px;
+                                }
+                                @include desktop-1366 {
+                                    margin: 0 0 12px;
+                                }
                             }
                             .img-wrapper {
                                 display: inline-block;
@@ -442,6 +1018,12 @@ body {
                                 display: inline-block;
                                 vertical-align: top;
                                 margin-left: 6px;
+                                max-width: 88%;
+                                overflow-wrap: break-word;
+                                
+                                @include desktop-1366 {
+                                    max-width: 83%;
+                                }
                             }
                         }
                     }
@@ -450,39 +1032,114 @@ body {
             #bottom-widgets {
                 background: #000;
                 padding: 20px 0;
+                color: #fff;
+                width: 100%;
+                height: 10vh;
+                overflow: hidden;
                 
+                @include desktop-1440 {
+                    padding: 15px 0;
+                }
+                @include phone {
+                    height: auto;
+                    overflow: visible;
+                }
+                @include tablet-portrait {
+                    height: auto;
+                    overflow: visible;
+                }
+                @include tablet-landscape {
+                    height: auto;
+                    overflow: visible;
+                }
                 .one-fourth {
                     margin-left: 0;
                     width: 25%;
+                    height: 2px;
+                    padding: 0;
                     
-                    @include desktop {
+                    @include desktop-1440 {
+                        width: 22%;
+                    }
+                    @include desktop-1366 {
                         width: 21%;
+                    }
+                    @include tablet-landscape {
+                        width: 18%;
+                    }
+                    @include tablet-portrait {
+                        width: 100%;
+                        height: auto;
+                        text-align: left;
+                        margin-bottom: 0;
+                        padding: 0 15px;
+                    }
+                    @include phone {
+                        width: 100%;
+                        height: auto;
+                        text-align: left;
+                        margin-bottom: 0;
+                        padding: 0 15px;
+                    }
+                    &:last-of-type {
+                        display: none;
                     }
                 }
                 .two-fourth {
                     width: 50%;
                     margin-left: 0;
+                    padding: 0;
                     
-                    @include desktop {
+                    @include desktop-1440 {
+                        width: 56%;
+                    }
+                    @include desktop-1366 {
                         width: 58%;
+                    }
+                    @include tablet-landscape {
+                        width: 63%;
+                    }
+                    @include tablet-portrait {
+                        width: 100%;
+                        margin: 15px auto;
+                    }
+                    @include phone {
+                        width: 100%;
+                        margin: 15px auto;
                     }
                 }
                 .text-content {
                     display: inline-block;
                     vertical-align: bottom;
                     
+                    
+                    @include tablet-landscape {
+                        width: 75px;
+                    }
                     &:not(:first-of-type) {
                         margin-left: 30px;
                         
-                        @include desktop {
-                            margin-left: 15px;
+                        @include desktop-1440 {
+                            margin-left: 20px;
+                        }
+                        @include desktop-1366 {
+                            margin-left: 10px;
+                        }
+                        @include tablet-landscape {
+                            line-height: 15px;
                         }
                     }
                     span {
                         display: block;
                         
-                        @include desktop {
+                        @include desktop-1440 {
                             font-size: 12px;
+                        }
+                        @include desktop-1366 {
+                            font-size: 12px;
+                        }
+                        @include tablet-landscape {
+                            font-size: 11px;
                         }
                     }
                     a {
@@ -490,22 +1147,48 @@ body {
                         font-size: 18px;
                         font-weight: 900;
                         
-                        @include desktop {
+                        @include desktop-1440 {
                             font-size: 16px;
+                        }
+                        @include desktop-1366 {
+                            font-size: 16px;
+                        }
+                        @include tablet-landscape {
+                            font-size: 11px;
                         }
                     }
                 }
                 .menu-menu-principal-container {
                     padding: 16px 0;
-                  
+                    text-align: center;
+                    
+                    
+                    @include tablet-portrait {
+                        padding: 16px 15px;
+
+                    }
+                    @include phone {
+                        padding: 16px 15px;
+                    }
                     li {
                         &.menu-item {
                             display: inline-block;
                             margin-bottom: 0;
                             padding: 0 10px;
                       
-                            @include desktop {
+                            @include desktop-1440 {
                                 padding: 0 5px;
+                            }
+                            @include desktop-1366 {
+                                padding: 0 5px;
+                            }
+                            @include tablet-portrait {
+                                display: block;
+                                padding: 0;
+                            }
+                            @include phone {
+                                display: block;
+                                padding: 0;
                             }
                             &:before {
                                 content: none;
@@ -513,9 +1196,16 @@ body {
                             a {
                                 text-transform: uppercase;
                                 font-size: 14px;
+                                
+                                @include desktop-1440 {
+                                    font-size: 11px;
+                                }
                         
-                                @include desktop {
+                                @include desktop-1366 {
                                     font-size: 12px;
+                                }
+                                @include tablet-landscape {
+                                    font-size: 11px;
                                 }
                                 &:hover {
                                     color: #fff;
@@ -524,15 +1214,135 @@ body {
                         }
                     }
                 }
+                .social-medias {
+                    padding: 16px 0;
+                    text-align: right;
+                    
+                    @include tablet-portrait {
+                        text-align: left;
+                        padding: 0;
+                    }
+                    @include phone {
+                        text-align: left;
+                        padding: 0;
+                    }
+                    span {
+                        font-size: 12px;
+                        margin-right: 8px;
+                        
+                        @include tablet-landscape {
+                            font-size: 11px;
+                            margin-right: 2px;
+                        }
+                    }
+                    a {
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 20px;
+                        height: 20px;
+                        background-image: url(../images/social-icons.png);
+                        background-size: cover;
+                        margin-right: 3px;
+                        
+                        &.facebook {
+                            background-position: 0 50%;
+                            width: 15px;
+                        }
+                        &.twitter {
+                            background-position: 110px 50%;
+                            width: 25px;
+                        }
+                        &.youtube {
+                            background-position: 66px 50%;
+                            width: 25px;
+                        }
+                        &.seila {
+                            background-position: 0 50%;
+                            width: 15px;
+                            display: none;
+                        }
+                        &.instagram {
+                            background-position: 22px 50%;
+                            width: 22px;
+                        }
+                    }
+                }
             }
             #footer {
+                height: 5vh;
+                overflow: hidden;
+                
+                @include phone {
+                    overflow: visible;
+                }
+                @include tablet-portrait {
+                    overflow: visible;
+                }
+                @include tablet-landscape {
+                    overflow: visible;
+                }
                 #footer-wrap {
                     padding: 10px 0;
+                    background-color: #000;
+                    
+                    @include tablet-portrait {
+                        max-width: 100%;
+                    }
+                    @include tablet-landscape {
+                        max-width: 100%;
+                    }
                     
                     #copyright {
                         font-size: 12px;
                         text-align: left;
+                        max-width: 65%;
+                        display: inline-block;
+                        vertical-align: top;
+                        
+                        @include desktop-1440 {
+                            font-size: 9px;
+                        }
+                        @include desktop-1366 {
+                            font-size: 10px;
+                        }
+                        @include tablet-portrait {
+                            max-width: 100%;
+                            padding: 0 15px;
+                            text-align: center;
+                        }
+                        @include phone {
+                            max-width: 100vw;
+                            text-align: center;
+                            background-color: #000; //
+                            padding-bottom: 15px;
+                            font-size: 7px;
+                        }
                     }   
+                    #i9-wrapper {
+                        display: inline-block;
+                        vertical-align: top;
+                        float: right;
+                        background-color: black; //
+                        
+                        @include tablet-portrait {
+                            width: 100%;
+                            text-align: center;
+                            padding: 10px 25px 0;
+                            margin-top: 15px;
+                            border-top: 1px solid rgba(255, 255, 255, 0.5);
+                        }
+                        @include phone {
+                            width: 100%;
+                            text-align: center;
+                            padding: 10px 25px 0;
+                            //margin-top: 15px;
+                            border-top: 1px solid rgba(255, 255, 255, 0.5);
+                        }
+                        span {
+                            font-size: 10px;
+                            margin-right: 5px;
+                        }
+                    }
                 }
             }
         }
@@ -543,6 +1353,21 @@ body {
             #main {
                 #header {
                     background-color: #000;
+                    
+                    #header-inner-wrap {
+                        #header-wrap {
+                            .page-title {
+                                h1 {
+                                    @include tablet-portrait {
+                                        padding: 50px 15px;
+                                    }
+                                    @include phone {
+                                        padding: 50px 15px;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -559,6 +1384,10 @@ body {
                                 
                                 h1 {
                                     padding-left: 0;
+                                    
+                                    @include phone {
+                                        padding-left: 15px;
+                                    }
                                 }
                             }
                         }
@@ -658,7 +1487,7 @@ body {
   float: left;
   text-align: center; }
 
-/* Fullscreen options, very important ^^ */
+/* screen options, very important ^^ */
 .royalSlider.rsFullscreen {
   position: fixed !important;
   height: auto !important;
@@ -1296,3 +2125,135 @@ img.rsImg {
 .rsDefault .rsThumb:nth-child(14) {
   animation-delay: 1.3s;
   -webkit-animation-delay: 1.3s; }
+  
+.customSelect {
+    // font-size: 14px;
+    border: none;
+    color: #000;
+    padding: 10px 15px;
+    width:100%;
+    height: 42px;
+    line-height: 1.3;
+    font-weight: normal;
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;*/
+    border: 1px solid rgb(204, 204, 204);
+    text-align: left;
+    // position: relative;
+    background-color: #fff;
+    
+    &:after {
+        content: '';
+        width: 35px;
+        height: 42px;
+        background: #000 url(../images/arrow-select.png) center center no-repeat;
+        position: absolute;
+        bottom: 0;
+        right: 11px;
+    }
+}
+.customSelectInner {
+	width: 90% !important;
+}
+.customSelect.customSelectHover {
+    border-color:#CCCCCC;
+    cursor: pointer;
+    
+    &:after {
+        background: #000 url(../images/arrow-select.png) center center no-repeat;
+    }
+}
+.customSelect.customSelectFocus {
+    outline: none;
+    border-color: #CCCCCC;
+    box-shadow: 0px 0px 10px #CCCCCC;
+}
+.customSelect.customSelectOpen {
+    border-color:#c7c7c7;
+}
+
+.customSelect.customSelectChanged {
+	-webkit-animation: changed 0.5s;
+	-moz-animation: changed 0.5s;
+	-ms-animation: changed 0.5s;
+	animation: changed 0.5s;
+}
+
+@-webkit-keyframes changed {
+	0%, 100%{
+		-webkit-box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0);
+		box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0);
+	}
+	50%{
+		-webkit-box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0.5);
+		box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0.5);
+	}
+}
+
+@-moz-keyframes changed {
+	0%, 100%{
+		-moz-box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0);
+		box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0);
+	}
+	50%{
+		-moz-box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0.5);
+		box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0.5);
+	}
+}
+
+@keyframes changed {
+	0%, 100%{
+		box-shadow:0px 0px 14px 5px rgba(89, 89, 89, 0);
+	}
+	50% {
+		box-shadow:0px 0px 14px 5px rgba(89, 89, 89, 0.5);
+	}
+}
+@-ms-keyframes changed {
+	0%, 100%{
+		-ms-box-shadow:0px 0px 14px 5px rgba(89, 89, 89, 0);
+		box-shadow:0px 0px 14px 5px rgba(89, 89, 89, 0);
+	}
+	50% {
+		-ms-box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0);
+		box-shadow: 0px 0px 14px 5px rgba(89, 89, 89, 0.5);
+	}
+}
+
+.tp-caption {
+    @include tablet-landscape {
+        font-size: 26px !important;
+        line-height: 28px !important;
+        
+        span {
+            font-size: 24px !important;    
+        }
+        a {
+            font-size: 18px !important;
+        }
+    }
+    @include tablet-portrait {
+        font-size: 26px !important;
+        line-height: 28px !important;
+        
+        span {
+            font-size: 24px !important;    
+        }
+        a {
+            font-size: 18px !important;
+        }
+    }
+    @include phone {
+        font-size: 13px !important;
+        
+        span {
+            font-size: 12px !important;    
+        }
+        a {
+            font-size: 12px !important;
+            
+            strong {
+                font-size: 13px !important;
+            }
+        }
+    }
+}

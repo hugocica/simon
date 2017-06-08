@@ -31,6 +31,13 @@ function simon_enqueue_scripts() {
         true
     );
     
+    wp_enqueue_script('customselect', 
+        get_stylesheet_directory_uri().'/js/jquery.customSelect.min.js',
+        array ( 'jquery' ), 
+        wp_get_theme()->get('Version'), 
+        true
+    );
+    
     wp_enqueue_script( 'grupoi9_ajax', 
         get_stylesheet_directory_uri() . '/js/grupoi9-ajax.js'
     );
@@ -56,5 +63,12 @@ include_once get_stylesheet_directory() . '/metaboxes/simon-spec.php';
 
 // include ajax functions
 include_once get_stylesheet_directory() . '/inc/grupoi9-ajax.php';
+
+add_filter('frm_redirect_url', 'return_page', 9, 3);
+function return_page($url, $form, $params){
+    $_SESSION['frm_success'] = true;
+    
+    return $url;
+}
 
 ?>

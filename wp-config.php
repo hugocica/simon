@@ -18,6 +18,9 @@
  * @package WordPress
  */
 
+define('WP_HOME','http://hugo.cicarelli.workspace.grupoi9.com');
+define('WP_SITEURL','http://hugo.cicarelli.workspace.grupoi9.com');
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', 'interamerican_simon');
